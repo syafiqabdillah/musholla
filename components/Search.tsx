@@ -8,12 +8,8 @@ function Search() {
   const router = useRouter();
   const [isDesktop] = useMediaQuery("(min-width: 1000px)");
 
-  const bottom = isDesktop ? 12 : 6;
-
   const search = async () => {
-    if (query) {
-      router.replace(`/?q=${query}`);
-    }
+    router.replace(`/?q=${query}`);
   };
 
   const buttonSubmitHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,14 +21,13 @@ function Search() {
     if (e.key === "Enter") search();
   };
   return (
-    <Flex position="fixed" w="full" bottom={bottom} justifyContent="center">
-      <Flex position="relative">
+    <Flex w="full" justifyContent="center" mr="3">
+      <Flex position="relative" w="full">
         <Input
           variant="outline"
           bg="white"
           type="text"
           w="100%"
-          maxW="300px"
           placeholder="Margo City, Kokas"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -51,6 +46,7 @@ function Search() {
             fontSize={12}
             color="gray.500"
             zIndex={10}
+            variant="unstyled"
           />
         )}
       </Flex>

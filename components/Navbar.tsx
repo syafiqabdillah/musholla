@@ -1,14 +1,30 @@
 import { Flex, Button } from "@chakra-ui/react";
 import React from "react";
 
-import Content from "./Content";
+import Search from "./Search";
 
 function Navbar() {
   return (
-    <Flex h="60px" position={"fixed"} top="0" w="full" p={3}>
-      <Content justifyContent="flex-end" alignItems="center">
+    <Flex
+      position={"fixed"}
+      h="80px"
+      bg="white"
+      top="0"
+      w="full"
+      p={3}
+      shadow="md"
+      zIndex={10}
+    >
+      <Flex
+        w="full"
+        maxW="500px"
+        mx={"auto"}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Search />
         <Button colorScheme={"facebook"}>Contribute</Button>
-      </Content>
+      </Flex>
     </Flex>
   );
 }

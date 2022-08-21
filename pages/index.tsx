@@ -1,14 +1,14 @@
 import React from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { Flex } from "@chakra-ui/react";
 
 import Navbar from "../components/Navbar";
-import Search from "../components/Search";
 import Result from "../components/Result";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <Flex flexDir="column" pt="80px" bg="gray.50">
       <Head>
         <title>Musholla in Places</title>
         <meta
@@ -18,9 +18,8 @@ const Home: NextPage = () => {
         <link rel="canonical" href="/" />
       </Head>
       <Navbar />
-      <Search />
       <Result />
-    </div>
+    </Flex>
   );
 };
 

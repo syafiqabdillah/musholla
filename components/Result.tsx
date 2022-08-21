@@ -18,25 +18,18 @@ function MushollaList(props: {
         fontSize="sm"
         flexDir={"column"}
         alignItems="center"
+        mt="3"
       >
         Tidak menemukan musholla dengan kata kunci ini
-        <Button mt="6" w="max-content" colorScheme={"facebook"}>
-          Kontribusi
-        </Button>
       </Flex>
     );
   }
   return (
-    <>
-      <Heading as="h1" fontSize={25} textAlign="center">
-        Musholla di {props.q ? `"${props.q}"` : "..."}
-      </Heading>
-      <Flex flexDir="column" gap="3" mt="12" w="full" mb="200px">
-        {props.listMusholla.map((musholla, index) => (
-          <MushollaItem musholla={musholla} key={musholla._id} />
-        ))}
-      </Flex>
-    </>
+    <Flex flexDir="column" gap="3" mt="12" w="full">
+      {props.listMusholla.map((musholla) => (
+        <MushollaItem musholla={musholla} key={musholla._id} />
+      ))}
+    </Flex>
   );
 }
 
@@ -49,10 +42,11 @@ function Result() {
   const q = router.query.q?.toString();
 
   async function fetchListMusholla() {
-    if (q && !loadingListMusholla) {
+    if (!loadingListMusholla) {
+      let query = q ? q : "";
       setLoadingListMusholla(true);
       try {
-        const resp = await axios.get(`${API_URL}/musholla/search?q=${q}`);
+        const resp = await axios.get(`${API_URL}/musholla/search?q=${query}`);
         setListMusholla(resp.data);
       } catch (err: any) {
         console.log(err.toString());
@@ -70,21 +64,19 @@ function Result() {
   return (
     <Flex
       minH="100vh"
-      bg="blue.800"
       justifyContent="flex-start"
       alignItems="center"
       flexDir="column"
-      color="white"
       p={6}
-      pt="30%"
     >
       <Flex flexDir="column" w="full" maxW="500px" mx="auto">
+        <Heading as="h1" fontSize={25} mt="3" textAlign="center">
+          Musholla di {q ? `"${q}"` : "..."}
+        </Heading>
         {loadingListMusholla ? (
           <Flex w="full" mt="6" justifyContent="center">
             <CircularProgress isIndeterminate color="blue.300" />
           </Flex>
-        ) : firstLoad ? (
-          <Flex>yaho</Flex>
         ) : (
           <MushollaList q={q} listMusholla={listMusholla} />
         )}

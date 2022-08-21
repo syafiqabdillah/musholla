@@ -9,10 +9,11 @@ function Badge(props: { children: React.ReactNode }) {
       rounded="lg"
       color="white"
       bg="blue.500"
-      py={1}
+      py={"3px"}
       px={2}
       justifyContent="center"
       alignItems="center"
+      fontSize="xs"
     >
       {props.children}
     </Flex>
@@ -28,8 +29,10 @@ function MushollaItem(props: { musholla: Musholla }) {
       p="3"
       w="full"
       color="blue.800"
+      shadow="md"
       rounded="xl"
       flexDirection={"column"}
+      fontSize="sm"
     >
       <Flex justifyContent={"space-between"} w="full">
         <Text>
